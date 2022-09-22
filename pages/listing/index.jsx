@@ -43,6 +43,7 @@ function Listing({ charactersData }) {
           <div className={styles.card} key={character?.id}>
             <Image
               src={character?.image}
+              alt={character?.name}
               layout="responsive"
               width={'100%'}
               height={'100%'}
