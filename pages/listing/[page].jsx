@@ -13,10 +13,7 @@ function Listing({ charactersData }) {
 
   const router = useRouter()
 
-  const handlePageClick = (e) => router.push({
-    pathname: `/listing`,
-    query: { page: e.selected + 1},
-  })
+  const handlePageClick = (e) => router.push(`/listing/${e.selected + 1}`)
 
   // const getCharacters = useCallback(async () => {
   //   try {
@@ -61,7 +58,7 @@ function Listing({ charactersData }) {
         nextLabel="next >"
         onPageChange={handlePageClick}
         pageRangeDisplayed={5}
-        pageCount={charactersData.info.pages}
+        pageCount={charactersData?.info.pages}
         previousLabel="< previous"
         renderOnZeroPageCount={null}
         pageClassName="page-item"
@@ -81,25 +78,31 @@ function Listing({ charactersData }) {
 
 export default Listing;
 
-export const getServerSideProps = async (context) => {
-  if (!context.query.page) context.query.page = 1;
-  const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${context.query.page}`);
-
-  return {
-    props: {
-      charactersData: response.data,
-    }
-  }
-}
-
-// export const getStaticProps = async (context) => {
-//   console.log(context);
-//   const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=1`);
+// export const getServerSideProps = async (context) => {
+//   if (!context.query.page) context.query.page = 1;
+//   const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${context.query.page}`);
 
 //   return {
 //     props: {
 //       charactersData: response.data,
-//     },
-//     revalidate: 60,
+//     }
 //   }
 // }
+
+export const getStaticPaths = async (context) => {
+  return {
+    paths: [],
+    fallback: true
+  }
+}
+
+export const getStaticProps = async (context) => {
+  const response = await axios.get(`https://rickandmortyapi.com/api/character/?page=${context.params.page}`);
+
+  return {
+    props: {
+      charactersData: response.data,
+    },
+    revalidate: (60 * 60) * 2,
+  }
+}

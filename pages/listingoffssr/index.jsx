@@ -32,9 +32,13 @@ function ListingOFFSSR() {
       <div className={styles.card_container}>
         {charactersList.map(character => (
           <div className={styles.card} key={character.id}>
-            <Image src={character?.image} alt={character?.name} layout="responsive"
+            <Image
+              src={character?.image}
+              alt={character?.name}
+              layout="responsive"
               width={'100%'}
-              height={'100%'} />
+              height={'100%'}
+            />
           </div>
         ))}
       </div>

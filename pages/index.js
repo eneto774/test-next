@@ -17,7 +17,7 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        <PreFetchLink className={styles.button} href="/listing">Go to Listing!!</PreFetchLink>
+        <PreFetchLink className={styles.button} href="/listing/1">Go to Listing!!</PreFetchLink>
         <Link className={styles.button} href="/listingoffssr">Go to Listing SSR OFF!!</Link>
       </main>
     </div>
