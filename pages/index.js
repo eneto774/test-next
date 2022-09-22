@@ -1,6 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from 'next/link'
 import styles from '../styles/Home.module.css'
+import PreFetchLink from './components/PreFetchLink'
 
 export default function Home() {
   return (
@@ -15,6 +17,8 @@ export default function Home() {
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+        <PreFetchLink className={styles.button} href="/listing">Go to Listing!!</PreFetchLink>
+        <Link className={styles.button} href="/listingoffssr">Go to Listing SSR OFF!!</Link>
       </main>
     </div>
   )

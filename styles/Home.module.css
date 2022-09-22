@@ -127,3 +127,20 @@
     filter: invert(1);
   }
 }
+
+.button {
+  background: #0070f3;
+  color: #FFF;
+  text-decoration: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: all 0.3s;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.button:hover {
+  background: #003674;
+}
