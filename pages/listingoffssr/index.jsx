@@ -4,6 +4,7 @@ import styles from './Listing.module.css';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import ReactPaginate from 'react-paginate';
+import Image from 'next/image';
 
 function ListingOFFSSR() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -30,8 +31,8 @@ function ListingOFFSSR() {
       <h1>Listing Off SSR</h1>
       <div className={styles.card_container}>
         {charactersList.map(character => (
-          <div className={styles.card}>
-            <img src={character.image} alt={character.name} />
+          <div className={styles.card} key={character.id}>
+            <Image src={character.image} alt={character.name} />
           </div>
         ))}
       </div>
