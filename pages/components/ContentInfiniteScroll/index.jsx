@@ -19,7 +19,7 @@ function ContentInfiniteScroll({ data, paginationInfo }) {
 
   return (
       <InfiniteScroll
-        dataLength={cards.length}
+        dataLength={cards?.length}
         next={fetchNextPage}
         hasMore={paginate.next}
         loader={<h4>Loading...</h4>}
