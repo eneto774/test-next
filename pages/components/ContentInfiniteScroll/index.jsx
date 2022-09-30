@@ -10,10 +10,10 @@ function ContentInfiniteScroll({ data, paginationInfo }) {
   const [cards, setCards] = useState(data);
 
   const fetchNextPage = async () => {
-    if (paginate.next) {
-      const response = await axios.get(paginate.next);
-      setPaginate(response.data.info);
-      setCards([...cards, ...response.data.results]);
+    if (paginate?.next) {
+      const response = await axios.get(paginate?.next);
+      setPaginate(response?.data?.info);
+      setCards([...cards, ...response?.data?.results]);
     }
   }
 
@@ -21,7 +21,7 @@ function ContentInfiniteScroll({ data, paginationInfo }) {
       <InfiniteScroll
         dataLength={cards?.length}
         next={fetchNextPage}
-        hasMore={paginate.next}
+        hasMore={paginate?.next}
         loader={<h4>Loading...</h4>}
         endMessage={<h4>Nothing more to show</h4>}
       >
