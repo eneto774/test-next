@@ -21,8 +21,7 @@ function InfiniteScrollPage() {
   return (
     <div>
       <h1>
-        Rick and Morty with React Query and Infinite Scroll - Client Side
-        Rendered
+        Rick and Morty with React Query and Infinite Scroll - CSR
       </h1>
       {status === "success" && (
         <InfiniteScroll
