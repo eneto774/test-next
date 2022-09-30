@@ -26,20 +26,20 @@ function ContentInfiniteScroll({ data, paginationInfo }) {
         endMessage={<h4>Nothing more to show</h4>}
       >
         <div className='grid-container'>
-              {cards.map((character) => (
-                <article  key={character.id}>
+              {cards?.map((character) => (
+                <article  key={character?.id}>
                   <Image
-                    src={character.image}
-                    alt={character.name}
+                    src={character?.image}
+                    alt={character?.name}
                     height={250}
                     loading='lazy'
                     width={'100%'}
                   />
                   <div className='text'>
-                    <p>Name: {character.name}</p>
-                    <p>Lives in: {character.location.name}</p>
-                    <p>Species: {character.species}</p>
-                    <i>Id: {character.id} </i>
+                    <p>Name: {character?.name}</p>
+                    <p>Lives in: {character?.location.name}</p>
+                    <p>Species: {character?.species}</p>
+                    <i>Id: {character?.id} </i>
                   </div>
                 </article>
               ))}
