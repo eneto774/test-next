@@ -5,15 +5,22 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 // import { Container } from './styles';
 
-function ContentInfiniteScroll({ data, paginationInfo }) {
+function ContentInfiniteScroll({ data, paginationInfo, apiData }) {
   const [paginate, setPaginate] = useState(paginationInfo);
   const [cards, setCards] = useState(data);
-
+  const [actualPage, setActualPage] = useState(Number(paginate.page))
+  
   const fetchNextPage = async () => {
-    if (paginate?.next) {
-      const response = await axios.get(paginate?.next);
-      setPaginate(response?.data?.info);
-      setCards([...cards, ...response?.data?.results]);
+    if (Number(paginate.page) < paginate.max_pages) {
+      const response = await axios.get(`${apiData.url}/property/?offset=8&page=${actualPage + 1}`,
+      {
+        headers: {
+        'X-API-KEY': apiData.apiKey,
+      },
+    });
+      setPaginate(response?.data?.pagination);
+      setActualPage(Number(response?.data?.pagination.page))
+      setCards([...cards, ...response?.data?.data]);
     }
   }
 
@@ -21,25 +28,24 @@ function ContentInfiniteScroll({ data, paginationInfo }) {
       <InfiniteScroll
         dataLength={cards?.length}
         next={fetchNextPage}
-        hasMore={paginate?.next}
+        hasMore={Number(paginate.page) < paginate.max_pages}
         loader={<h4>Loading...</h4>}
         endMessage={<h4>Nothing more to show</h4>}
       >
         <div className='grid-container'>
-              {cards?.map((character) => (
-                <article  key={character?.id}>
+              {cards?.map((property) => (
+                <article  key={property?.id}>
                   <Image
-                    src={character?.image}
-                    alt={character?.name}
+                    src={property?.foto_capa}
+                    alt={property?.nome_imovel}
                     height={250}
                     loading='lazy'
-                    width={'100%'}
+                    width={250}
                   />
                   <div className='text'>
-                    <p>Name: {character?.name}</p>
-                    <p>Lives in: {character?.location.name}</p>
-                    <p>Species: {character?.species}</p>
-                    <i>Id: {character?.id} </i>
+                    <p>Nome: {property?.nome_imovel}</p>
+                    {/* <p>Description: {property?.descricao}</p> */}
+                    <i>Id: {property?.id} </i>
                   </div>
                 </article>
               ))}

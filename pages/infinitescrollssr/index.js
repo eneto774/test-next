@@ -5,13 +5,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { useInfiniteQuery } from "react-query";
 import ContentInfiniteScroll from "../components/ContentInfiniteScroll";
 
-function InfiniteScrollPageSSR({ data }) {
+function InfiniteScrollPageSSR({ propertyList }) {
   return (
     <div>
       <h1>
         Rick and Morty and Infinite Scroll - SSR
       </h1>
-      <ContentInfiniteScroll data={data.results} paginationInfo={data.info} />
+      <ContentInfiniteScroll data={propertyList.data} paginationInfo={propertyList.pagination} apiData={propertyList.apiData} />
     </div>
   );
 }
@@ -20,11 +20,16 @@ export default InfiniteScrollPageSSR;
 
 
 export const getStaticProps = async () => {
-  const response = await axios.get("https://rickandmortyapi.com/api/character/?page=1");
+  const propertyList = await axios.get(`${process.env.REACT_APP_API_URL}/property/?offset=8&page=1`,
+    {
+      headers: {
+      'X-API-KEY': process.env.REACT_APP_API_KEY,
+    },
+  });
 
   return {
     props: {
-      data: response.data,
+      propertyList: {...propertyList.data, apiData: { url: process.env.REACT_APP_API_URL, apiKey: process.env.REACT_APP_API_KEY }}
     },
     revalidate: 60,
   }

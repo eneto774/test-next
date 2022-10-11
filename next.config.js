@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images: {
-    domains: ['rickandmortyapi.com'],
+    domains: ['rickandmortyapi.com', 'cloudfront.net'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -12,6 +12,14 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: '**.rickandmortyapi.com',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.cloudfront.net',
+      },
+      {
+        protocol: 'http',
+        hostname: '**.cloudfront.net',
       },
     ]
   },
