@@ -8,14 +8,14 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 function ContentInfiniteScroll({ data, paginationInfo, apiData }) {
   const [paginate, setPaginate] = useState(paginationInfo);
   const [cards, setCards] = useState(data);
-  const [actualPage, setActualPage] = useState(Number(paginate.page))
+  const [actualPage, setActualPage] = useState(Number(paginate?.page))
   
   const fetchNextPage = async () => {
-    if (Number(paginate.page) < paginate.max_pages) {
-      const response = await axios.get(`${apiData.url}/property/?offset=8&page=${actualPage + 1}`,
+    if (Number(paginate?.page) < paginate?.max_pages) {
+      const response = await axios.get(`${apiData?.url}/property/?offset=8&page=${actualPage + 1}`,
       {
         headers: {
-        'X-API-KEY': apiData.apiKey,
+        'X-API-KEY': apiData?.apiKey,
       },
     });
       setPaginate(response?.data?.pagination);
