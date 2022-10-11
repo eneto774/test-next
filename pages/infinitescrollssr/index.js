@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useInfiniteQuery } from "react-query";
-import ContentInfiniteScroll from "../components/ContentInfiniteScroll";
+import ContentInfiniteScroll from "../../components/ContentInfiniteScroll";
 
 function InfiniteScrollPageSSR({ propertyList }) {
   return (
