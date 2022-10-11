@@ -11,7 +11,7 @@ function InfiniteScrollPageSSR({ propertyList }) {
       <h1>
         Rick and Morty and Infinite Scroll - SSR
       </h1>
-      <ContentInfiniteScroll data={propertyList.data} paginationInfo={propertyList.pagination} apiData={propertyList.apiData} />
+      <ContentInfiniteScroll data={propertyList?.data} paginationInfo={propertyList?.pagination} apiData={propertyList?.apiData} />
     </div>
   );
 }
