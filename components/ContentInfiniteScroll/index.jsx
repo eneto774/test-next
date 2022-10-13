@@ -1,3 +1,4 @@
+import { Skeleton } from '@material-ui/lab';
 import axios from 'axios';
 import Image from 'next/image';
 import React, { useState } from 'react';
@@ -29,7 +30,7 @@ function ContentInfiniteScroll({ data, paginationInfo, apiData }) {
         dataLength={cards?.length}
         next={fetchNextPage}
         hasMore={Number(paginate.page) < paginate.max_pages}
-        loader={<h4>Loading...</h4>}
+        loader={<span>Loading...</span>}
         endMessage={<h4>Nothing more to show</h4>}
       >
         <div className='grid-container'>
