@@ -29,6 +29,7 @@ function ContentInfiniteScroll({ data, paginationInfo, apiData }) {
       <InfiniteScroll
         dataLength={cards?.length}
         next={fetchNextPage}
+        // onScroll={(e) => console.log(e)}
         hasMore={Number(paginate.page) < paginate.max_pages}
         loader={<span>Loading...</span>}
         endMessage={<h4>Nothing more to show</h4>}

@@ -28,7 +28,7 @@ export default InfiniteScrollPageSSR;
 
 
 export const getStaticProps = async () => {
-  const propertyList = await axios.get(`${process.env.REACT_APP_API_URL}/property/?offset=8&page=1`,
+  const propertyList = await axios.get(`${process.env.REACT_APP_API_URL}/property/?offset=8&page=2`,
     {
       headers: {
       'X-API-KEY': process.env.REACT_APP_API_KEY,
